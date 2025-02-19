@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa Romântica 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff7b7b, #ff3385);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            color: white;
+            background: #e6007e;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .button:hover {
+            background: #ff3385;
+            transform: translateY(-3px);
+        }
+
+        .heart {
+            font-size: 3em;
+            margin-top: 15px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        /* Estilo do pop-up */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
+        }
+
+        .popup-content {
+            background: white;
+            color: black;
+            padding: 20px;
+            max-width: 90%;
+            width: 380px;
+            border-radius: 10px;
+            text-align: justify;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-in-out;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            margin-top: 15px;
+            background: #e6007e;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #ff3385;
+        }
+
+        .popup.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Corações caindo */
+        .heart-falling {
+            position: fixed;
+            color: red;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Te Amo, Minha Princesa! 💖</h1>
+        <p>Preparei algo especial para você. Clique no botão abaixo!</p>
+        <button class="button" onclick="mostrarPopup()">Ver Surpresa</button>
+        <div class="heart">❤️</div>
+    </div>
+
+    <!-- Pop-up da surpresa -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h2>Para você, meu amor 💕</h2>
+            <p>
+                Oiii meu amor. Como está minha princesa? Espero que bem, meu anjo 💖. Vim hoje desejar parabéns pra gente, amooooorrrrr! Nosso sétimo mês juntooooos! Não tem ideia da minha felicidade nesse momento, né amor? Mas bom, vamos por partes...  
+                <br><br>
+                Começamos com fases e fases, meu amor. Começamos muito bem, aliás, mas por falta de maturidade dos dois lados, caímos em brigas, e isso acabou desgastando a gente. Estávamos caindo na rotina, com os mesmos assuntos, e parecia que nosso sonho estava indo embora por besteira. Nossa paixão esfriando por bobagens...  
+                <br><br>
+                Mas passaram dias, semanas, meses, e conseguimos nos reorganizar. Falamos sobre o que queríamos e o que não queríamos. Começamos a ter assuntos mais profundos e a expor nossos medos um ao outro, e isso foi nos deixando mais fortes e confiantes.  
+                <br><br>
+                Hoje, vejo como nossa fase está maravilhosa! Conseguimos sair juntos, nos desligar do mundo, curtir um fim de tarde... E quando olhei nos seus olhos naquele momento, eu soube: era ali que eu queria estar, do seu lado, vivendo cada momento com você.  
+                <br><br>
+                Sei que o futuro nos reserva ainda mais momentos especiais. Sei que vamos construir algo lindo juntos. Te amo além dessa vida, minha Hayman. ❤️  
+                <br><br>
+                Ass: Matheus Paolo (Seu namorado/Futuro Marido)  
+            </p>
+            <button class="close-btn" onclick="fecharPopup()">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        function mostrarPopup() {
+            document.getElementById("popup").classList.add("show");
+            criarCoracoes();
+        }
+
+        function fecharPopup() {
+            document.getElementById("popup").classList.remove("show");
+        }
+
+        function criarCoracoes() {
+            for (let i = 0; i < 20; i++) { 
+                let heart = document.createElement("div");
+                heart.classList.add("heart-falling");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
